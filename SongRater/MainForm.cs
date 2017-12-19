@@ -54,6 +54,8 @@ namespace SongRater
 			if (folderTextBox1.SelectedPath == null)
 			{
 				songs.Clear();
+				songGraph1.ClearSnapshots();
+				songGraph1.Refresh();
 				AssignTwoChampions();
 				return;
 			}
@@ -62,9 +64,15 @@ namespace SongRater
 
 			fighters.Clear();
 			songs.Clear();
+			songGraph1.ClearSnapshots();
 			foreach (string path in files)
-				songs.Add(new Song(path));
+			{
+				var song = new Song(path);
+				songs.Add(song);
+				songGraph1.AddSnapshot(song);
+			}
 
+			songGraph1.Refresh();
 			AssignTwoChampions();
 		}
 
@@ -102,6 +110,24 @@ namespace SongRater
 
 		private Song GetNextFighter(Song other = null)
 		{
+			Song fighter = TryGetNextFighter(other);
+			if (fighter == null)
+			{
+				foreach (Song song in songs)
+					song.ResetPlayedAgainst();
+
+				fighter = TryGetNextFighter(other);
+			}
+
+			if (fighter == null)
+				MessageBox.Show("Sorry but it seems we have too few to fight! :(\n\nTry with more fighting songs!",
+					"No fighter found!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+			return fighter;
+		}
+
+		private Song TryGetNextFighter(Song other = null)
+		{
 			const int tries = 10;
 
 			for (int i = 0; i < tries; i++)
@@ -133,6 +159,7 @@ namespace SongRater
 			Song.EvaluateRound(winner: songPage1.Song, loser: songPage2.Song);
 			SortSongs();
 			AssignTwoChampions();
+			PostEvaluationSnapshot();
 		}
 
 		private void button2_Click(object sender, EventArgs e)
@@ -140,6 +167,16 @@ namespace SongRater
 			Song.EvaluateRound(winner: songPage2.Song, loser: songPage1.Song);
 			SortSongs();
 			AssignTwoChampions();
+			PostEvaluationSnapshot();
+		}
+
+		private void PostEvaluationSnapshot()
+		{
+			if (songPage1.Song == null || songPage2 == null) return;
+
+			songGraph1.AddSnapshot(songPage1.Song);
+			songGraph1.AddSnapshot(songPage2.Song);
+			songGraph1.Refresh();
 		}
 
 		private void SortSongs()

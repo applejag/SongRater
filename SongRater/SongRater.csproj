@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,6 +68,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Song.cs" />
+    <Compile Include="SongGraph.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SongGraph.Designer.cs">
+      <DependentUpon>SongGraph.cs</DependentUpon>
+    </Compile>
     <Compile Include="SongPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,6 +95,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SongGraph.resx">
+      <DependentUpon>SongGraph.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SongPage.resx">
       <DependentUpon>SongPage.cs</DependentUpon>
     </EmbeddedResource>

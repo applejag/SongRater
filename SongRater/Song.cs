@@ -45,6 +45,11 @@ namespace SongRater
 			return playedAgainst.Contains(song);
 		}
 
+		public void ResetPlayedAgainst()
+		{
+			playedAgainst.Clear();
+		}
+
 		public static void EvaluateRound(Song winner, Song loser)
 		{
 			winner.playedAgainst.Add(loser);
