@@ -83,8 +83,7 @@ namespace SongRater
 				songPage1.Song = null;
 				songPage2.Song = null;
 				scoreListBox.Enabled = false;
-				button1.Enabled = false;
-				button2.Enabled = false;
+				SetButtonStates(false);
 				return;
 			}
 
@@ -96,16 +95,23 @@ namespace SongRater
 				// Döner.
 				songPage1.Song = null;
 				songPage2.Song = null;
-				button1.Enabled = false;
-				button2.Enabled = false;
+				SetButtonStates(false);
 				return;
 			}
 
 			songPage1.Song = fighter1;
 			songPage2.Song = fighter2;
 			scoreListBox.Enabled = true;
-			button1.Enabled = true;
-			button2.Enabled = true;
+			SetButtonStates(true);
+		}
+
+		private void SetButtonStates(bool enabled)
+		{
+			button1.Enabled = enabled;
+			button2.Enabled = enabled;
+			repeatButtonRandom.Enabled = enabled;
+			repeatButtonHighest.Enabled = enabled;
+			repeatButtonLowest.Enabled = enabled;
 		}
 
 		private Song GetNextFighter(Song other = null)
@@ -184,6 +190,30 @@ namespace SongRater
 			songsBacking.Sort();
 			songs.ResetBindings();
 		}
-		
+
+		private readonly Random random = new Random();
+		private void repeatButtonRandom_Depressed(object sender, EventArgs e)
+		{
+			if (random.Next(2) == 0)
+				button1_Click(null, null);
+			else
+				button2_Click(null, null);
+		}
+
+		private void repeatButtonHighest_Depressed(object sender, EventArgs e)
+		{
+			if (songPage1.Song.Rating > songPage2.Song.Rating)
+				button1_Click(null, null);
+			else
+				button2_Click(null, null);
+		}
+
+		private void repeatButtonLowest_Depressed(object sender, EventArgs e)
+		{
+			if (songPage1.Song.Rating <= songPage2.Song.Rating)
+				button1_Click(null, null);
+			else
+				button2_Click(null, null);
+		}
 	}
 }

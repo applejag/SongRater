@@ -67,6 +67,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepeatButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Song.cs" />
     <Compile Include="SongGraph.cs">
       <SubType>UserControl</SubType>
