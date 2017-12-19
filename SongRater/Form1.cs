@@ -144,8 +144,9 @@ namespace SongRater
 
 		private void SortSongs()
 		{
-			songsBacking.Sort((a,b) => b.Rating.CompareTo(a.Rating));
+			songsBacking.Sort();
 			songs.ResetBindings();
 		}
+		
 	}
 }

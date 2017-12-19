@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SongRater
 {
-	public class Song
+	public class Song : IComparable<Song>, IComparable
 	{
 		public readonly string Path;
 		public readonly string Filename;
 		public readonly string Title;
 		public readonly string Artist;
+
+		public string CombinedTitle => string.IsNullOrWhiteSpace(Artist)
+			? Title
+			: $"{Artist} - {Title}";
 
 		private readonly HashSet<Song> playedAgainst = new HashSet<Song>();
 
@@ -62,9 +67,24 @@ namespace SongRater
 
 		public override string ToString()
 		{
-			return $"[{Rating:F0}]\t" + (string.IsNullOrWhiteSpace(Artist)
-				? Title
-				: $"{Artist} - {Title}");
+			return $"[{Rating:F0}]\t{CombinedTitle}";
+		}
+
+		public int CompareTo(Song other)
+		{
+			if (ReferenceEquals(this, other)) return 0;
+			if (ReferenceEquals(null, other)) return 1;
+			int ratingComparison = Rating.CompareTo(other.Rating);
+			if (ratingComparison != 0) return -ratingComparison;
+			return string.Compare(CombinedTitle, other.CombinedTitle, StringComparison.CurrentCultureIgnoreCase);
+		}
+
+		public int CompareTo(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return 1;
+			if (ReferenceEquals(this, obj)) return 0;
+			if (!(obj is Song)) throw new ArgumentException($"Object must be of type {nameof(Song)}");
+			return CompareTo((Song) obj);
 		}
 	}
 }
