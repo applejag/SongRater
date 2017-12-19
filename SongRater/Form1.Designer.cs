@@ -30,12 +30,12 @@
 		{
 			this.label1 = new System.Windows.Forms.Label();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.songPage1 = new SongRater.SongPage();
+			this.songPage2 = new SongRater.SongPage();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.scoreListBox = new System.Windows.Forms.ListBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.songPage1 = new SongRater.SongPage();
-			this.songPage2 = new SongRater.SongPage();
 			this.folderTextBox1 = new SongRater.FolderTextBox();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -59,28 +59,50 @@
 			// 
 			// splitContainer1
 			// 
-			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.splitContainer1.Location = new System.Drawing.Point(0, 72);
+			this.splitContainer1.Location = new System.Drawing.Point(3, 43);
 			this.splitContainer1.Name = "splitContainer1";
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.button1);
 			this.splitContainer1.Panel1.Controls.Add(this.songPage1);
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.button2);
 			this.splitContainer1.Panel2.Controls.Add(this.songPage2);
-			this.splitContainer1.Size = new System.Drawing.Size(337, 233);
-			this.splitContainer1.SplitterDistance = 167;
+			this.splitContainer1.Size = new System.Drawing.Size(337, 74);
+			this.splitContainer1.SplitterDistance = 168;
 			this.splitContainer1.TabIndex = 2;
+			// 
+			// songPage1
+			// 
+			this.songPage1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.songPage1.Location = new System.Drawing.Point(0, 0);
+			this.songPage1.Name = "songPage1";
+			this.songPage1.Size = new System.Drawing.Size(168, 74);
+			this.songPage1.Song = null;
+			this.songPage1.TabIndex = 0;
+			// 
+			// songPage2
+			// 
+			this.songPage2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.songPage2.Location = new System.Drawing.Point(0, 0);
+			this.songPage2.Name = "songPage2";
+			this.songPage2.Size = new System.Drawing.Size(165, 74);
+			this.songPage2.Song = null;
+			this.songPage2.TabIndex = 0;
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(0, 43);
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Enabled = false;
+			this.button1.Location = new System.Drawing.Point(0, 51);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.Size = new System.Drawing.Size(168, 23);
 			this.button1.TabIndex = 3;
 			this.button1.Text = "Upvote";
 			this.button1.UseVisualStyleBackColor = true;
@@ -88,10 +110,12 @@
 			// 
 			// button2
 			// 
-			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(266, 43);
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.Enabled = false;
+			this.button2.Location = new System.Drawing.Point(0, 51);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.Size = new System.Drawing.Size(168, 23);
 			this.button2.TabIndex = 4;
 			this.button2.Text = "Upvote";
 			this.button2.UseVisualStyleBackColor = true;
@@ -118,24 +142,6 @@
 			this.label2.TabIndex = 6;
 			this.label2.Text = "Current standings";
 			// 
-			// songPage1
-			// 
-			this.songPage1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.songPage1.Location = new System.Drawing.Point(0, 0);
-			this.songPage1.Name = "songPage1";
-			this.songPage1.Size = new System.Drawing.Size(167, 233);
-			this.songPage1.Song = null;
-			this.songPage1.TabIndex = 0;
-			// 
-			// songPage2
-			// 
-			this.songPage2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.songPage2.Location = new System.Drawing.Point(0, 0);
-			this.songPage2.Name = "songPage2";
-			this.songPage2.Size = new System.Drawing.Size(166, 233);
-			this.songPage2.Song = null;
-			this.songPage2.TabIndex = 0;
-			// 
 			// folderTextBox1
 			// 
 			this.folderTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -157,8 +163,6 @@
 			// splitContainer2.Panel1
 			// 
 			this.splitContainer2.Panel1.Controls.Add(this.folderTextBox1);
-			this.splitContainer2.Panel1.Controls.Add(this.button1);
-			this.splitContainer2.Panel1.Controls.Add(this.button2);
 			this.splitContainer2.Panel1.Controls.Add(this.label1);
 			this.splitContainer2.Panel1.Controls.Add(this.splitContainer1);
 			// 

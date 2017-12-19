@@ -75,6 +75,8 @@ namespace SongRater
 				songPage1.Song = null;
 				songPage2.Song = null;
 				scoreListBox.Enabled = false;
+				button1.Enabled = false;
+				button2.Enabled = false;
 				return;
 			}
 
@@ -86,12 +88,16 @@ namespace SongRater
 				// Döner.
 				songPage1.Song = null;
 				songPage2.Song = null;
+				button1.Enabled = false;
+				button2.Enabled = false;
 				return;
 			}
 
 			songPage1.Song = fighter1;
 			songPage2.Song = fighter2;
 			scoreListBox.Enabled = true;
+			button1.Enabled = true;
+			button2.Enabled = true;
 		}
 
 		private Song GetNextFighter(Song other = null)
