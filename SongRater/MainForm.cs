@@ -12,7 +12,7 @@ using SongRater.ExtensionMethods;
 
 namespace SongRater
 {
-	public partial class Form1 : Form
+	public partial class MainForm : Form
 	{
 		public string FileSearchPattern { get; set; } = "*.mp3";
 		private readonly List<Song> songsBacking;
@@ -20,7 +20,7 @@ namespace SongRater
 
 		private readonly List<Song> fighters;
 
-		public Form1()
+		public MainForm()
 		{
 			InitializeComponent();
 
